@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="/users/add" method="POST">
+    <label for="username">User name</label>
+    <input type="text" name="username">
+    <label for="email">Email </label>
+    <input type="text" name="email">
+    <label for="age">Age </label>
+    <input type="number" name="age">
+
+
+    <input type="submit"  value="Save" />
+</form>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+@app_route("/calc", methods=["GET","POST"])
+def calc():
+    form = CalcForm()
+    if form.validate_on_cubmit():
+        a = form.a.data
+        d = form.b.data
+        result = a + b
+        flash('result = '+str(result))
+        return redirect('/calc')
+    return render_template('calc.html', form=form)

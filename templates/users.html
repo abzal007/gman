@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>User List</h1>
+    <a href="/users/add">gsaj</a>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <a href="/users/edit/{{ user.id }}">Редактировать</a>
+                        <a href="/users/delete/{{ user.id }}"
+                           onclick="event.preventDefault();
+                           if(confirm('Вы уверены, что хотите удалить этого студента?')) {
+                                document.getElementById('delete-form-{{ user.id }}').submit();
+                           }"
+                        >Удалить</a>
+                        <form id="delete-form-{{ user.id }}"
+                              action="/users/delete/{{ user.id }}"
+                              method="POST" style="display: none;"
+                        >
+                            <input type="hidden" name="_method" value="DELETE">
+                        </form>
+
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+
+

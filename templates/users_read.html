@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+user = User.query.get_or_404(id)
+db.session.delete(user)
+db.session.commit()
+return redirect('/users')
+
+
+
+
+
+
+
+
